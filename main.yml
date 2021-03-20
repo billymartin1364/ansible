@@ -1,4 +1,5 @@
-# This playbook will run all common tasks for the VMware role before running
+# This playbook will run all common tasks for the VMware role before running 
+# phone check
 # the desired action.
 - name: 'Check dependencies'
   python_requirements_facts:
@@ -7,8 +8,7 @@
       - 'suds'
       - 'vapi_client_bindings'
       - 'vmc_client_bindings'
-      - 'nsx_python_sdk'
-      - 'nsx_policy_python_sdk'
+      - 'nsx_python_sd'
   register: 'vmware_deps'
   delegate_to: "{{ vsphere_api_host }}"
   loop: "{{ query('inventory_hostnames', '{{ ansible_play_hosts }}' ) }}"
@@ -20,3 +20,4 @@ loop: "{{ vmware_deps['results'] }}"
 when:
 - item.not_found | length != 0
 - vsphere_install_sdk
+  phone check git push
